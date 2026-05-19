@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Jeel Vankhede — Lead Full Stack Engineer portfolio covering React, Next.js, TypeScript, Node.js, NestJS, Android, architecture, and AI-assisted development workflows." />
+    <title>Jeel Vankhede · Lead Full Stack Engineer</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #08111f;
+        --panel: #0e1b2d;
+        --panel-2: #12233a;
+        --text: #e6edf7;
+        --muted: #9fb0c7;
+        --line: rgba(255,255,255,.11);
+        --brand: #68e1fd;
+        --brand-2: #8b5cf6;
+        --accent: #34d399;
+        --danger: #f59e0b;
+        --shadow: 0 24px 80px rgba(0,0,0,.35);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top left, rgba(104,225,253,.18), transparent 30%), radial-gradient(circle at top right, rgba(139,92,246,.16), transparent 28%), var(--bg);
+        color: var(--text);
+        line-height: 1.65;
+      }
+      a { color: inherit; text-decoration: none; }
+      .wrap { width: min(1120px, calc(100% - 36px)); margin: 0 auto; }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(18px);
+        background: rgba(8,17,31,.72);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; gap: 18px; }
+      .logo { font-weight: 800; letter-spacing: -.03em; font-size: 18px; }
+      .navlinks { display: flex; gap: 18px; color: var(--muted); font-size: 14px; }
+      .navlinks a:hover { color: var(--text); }
+      .hero { padding: 90px 0 50px; }
+      .pill {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 8px 12px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255,255,255,.04);
+        color: var(--brand);
+        font-size: 14px;
+        font-weight: 700;
+      }
+      h1 { font-size: clamp(44px, 8vw, 82px); line-height: .98; letter-spacing: -.07em; margin: 24px 0 20px; max-width: 980px; }
+      .lead { max-width: 780px; color: var(--muted); font-size: clamp(18px, 2.2vw, 22px); margin: 0 0 28px; }
+      .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        padding: 12px 18px; border-radius: 14px; font-weight: 800; border: 1px solid var(--line);
+        background: rgba(255,255,255,.05);
+      }
+      .btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #06101e; border: 0; }
+      .btn:hover { transform: translateY(-1px); }
+      .proof { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin: 28px 0 0; }
+      .metric, .card {
+        background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+      }
+      .metric { padding: 18px; }
+      .metric strong { display: block; font-size: 28px; line-height: 1; letter-spacing: -.04em; }
+      .metric span { display: block; color: var(--muted); font-size: 13px; margin-top: 8px; }
+      section { padding: 56px 0; }
+      .section-head { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 22px; }
+      h2 { margin: 0; font-size: clamp(28px, 4vw, 42px); letter-spacing: -.05em; }
+      .sub { color: var(--muted); max-width: 680px; margin: 6px 0 0; }
+      .grid { display: grid; gap: 16px; }
+      .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .card { padding: 24px; }
+      .card h3 { margin: 0 0 6px; font-size: 22px; letter-spacing: -.03em; }
+      .eyebrow { color: var(--brand); font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
+      .card p { color: var(--muted); margin: 10px 0 0; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+      .tag { padding: 6px 10px; border-radius: 999px; background: rgba(104,225,253,.09); color: #c6f6ff; font-size: 12px; border: 1px solid rgba(104,225,253,.18); }
+      .skills { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .skill-list { color: var(--muted); margin-top: 8px; }
+      .timeline { display: grid; gap: 14px; }
+      .role { padding: 22px; border-left: 3px solid var(--brand); }
+      .role-top { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+      .role h3 { margin: 0; font-size: 20px; }
+      .date { color: var(--muted); font-size: 14px; }
+      .role ul { margin: 12px 0 0; padding-left: 20px; color: var(--muted); }
+      .contact { text-align: center; padding-bottom: 78px; }
+      .contact .card { max-width: 760px; margin: 0 auto; }
+      footer { border-top: 1px solid var(--line); padding: 24px 0; color: var(--muted); font-size: 14px; }
+      @media (max-width: 900px) { .proof { grid-template-columns: repeat(2, 1fr); } .projects, .skills { grid-template-columns: 1fr; } .navlinks { display: none; } }
+      @media (max-width: 520px) { .proof { grid-template-columns: 1fr; } .hero { padding-top: 56px; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap nav">
+        <a class="logo" href="#top">Jeel Vankhede</a>
+        <nav class="navlinks">
+          <a href="#work">Work</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="wrap">
+          <div class="pill">Lead Full Stack Engineer · AI-assisted workflows</div>
+          <h1>I build and lead full-stack products across frontend, backend, mobile, and architecture.</h1>
+          <p class="lead">9+ years across React, Next.js, TypeScript, Node.js, NestJS, Android/Kotlin, cloud-backed systems, offline-first products, and engineering leadership. I combine hands-on coding with architecture ownership, mentoring, delivery execution, and practical AI-assisted developer productivity tooling.</p>
+          <div class="actions">
+            <a class="btn primary" href="mailto:jeelvankhede@gmail.com">Contact me</a>
+            <a class="btn" href="https://github.com/JeelVankhede" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn" href="https://stackoverflow.com/users/10271334/jeel-vankhede" target="_blank" rel="noreferrer">Stack Overflow</a>
+            <a class="btn" href="https://www.linkedin.com/in/jeel-vankhede-b42887165" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+          <div class="proof" aria-label="Proof metrics">
+            <div class="metric"><strong>9+</strong><span>Years engineering experience</span></div>
+            <div class="metric"><strong>10</strong><span>Engineers led in a mixed team</span></div>
+            <div class="metric"><strong>12k+</strong><span>Stack Overflow reputation</span></div>
+            <div class="metric"><strong>1.1M+</strong><span>People reached</span></div>
+            <div class="metric"><strong>288</strong><span>Stack Overflow answers</span></div>
+            <div class="metric"><strong>2</strong><span>Published npm packages</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <h2>Featured work</h2>
+              <p class="sub">Selected projects that best represent my current positioning: full-stack leadership, product delivery, architecture ownership, and AI-assisted engineering workflows.</p>
+            </div>
+          </div>
+          <div class="grid projects">
+            <article class="card">
+              <div class="eyebrow">Published npm packages · TypeScript · CLI tooling</div>
+              <h3>AI Starter Recipes — Frontend & Backend</h3>
+              <p>Developer tooling for generating AI agent rules, workflows, project standards, context, tracking, and IDE adapters for frontend/backend teams. Supports Cursor, Claude Code, VS Code Copilot, Antigravity, Windsurf, React, Vue, Svelte, Angular, Next.js, NestJS, Express, Fastify, Hono, ORMs, auth, validation, and testing choices.</p>
+              <div class="tags"><span class="tag">TypeScript</span><span class="tag">CLI</span><span class="tag">AI workflows</span><span class="tag">Developer productivity</span></div>
+            </article>
+            <article class="card">
+              <div class="eyebrow">Angular · Android · Node.js/Express · Offline-first</div>
+              <h3>ARInspect / Compliance Management Platform</h3>
+              <p>Offline-first inspection and compliance platform used by US government inspectors and enterprise teams. Led a 10-engineer mixed team, built compliance tooling, backend APIs, web modules, canvas annotations, PDF generation, local storage, sync improvements, and delivered a large module estimated at 9 months within 6 months.</p>
+              <div class="tags"><span class="tag">10 engineers</span><span class="tag">300% efficiency testimonial</span><span class="tag">Offline-first</span><span class="tag">Compliance</span></div>
+            </article>
+            <article class="card">
+              <div class="eyebrow">React Native · NestJS · AWS · GitHub Actions</div>
+              <h3>YieldClub / DeFi P2P Lending App</h3>
+              <p>Crypto-based peer-to-peer lending application. Led an 8-engineer team across mobile and backend modules, helped scale the product from 0 to 5k active users, refactored wallet onramp/offramp flows, implemented Expo CI/CD, and supported nightly interest jobs using AWS SQS and Lambda.</p>
+              <div class="tags"><span class="tag">8 engineers</span><span class="tag">0 → 5k users</span><span class="tag">AWS SQS</span><span class="tag">AWS Lambda</span></div>
+            </article>
+            <article class="card">
+              <div class="eyebrow">React Native · NestJS · GCP · Calendar sync</div>
+              <h3>Gaimplan</h3>
+              <p>AI-powered lifestyle and calendar management application focused on calendar synchronization, event suggestions, and conflict resolution. Led a 6-engineer team, contributed as backend IC, architected NestJS APIs, and improved sync reliability using pub/sub and cron-based services.</p>
+              <div class="tags"><span class="tag">6 engineers</span><span class="tag">GCP</span><span class="tag">NestJS</span><span class="tag">Calendar sync</span></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="wrap">
+          <h2>Technical expertise</h2>
+          <p class="sub">Built around practical product delivery, not buzzword stuffing.</p>
+          <div class="grid skills" style="margin-top:22px">
+            <div class="card"><h3>Frontend</h3><div class="skill-list">React.js, Next.js, TypeScript, Angular, Redux, NgRx, Material UI, Canvas APIs, PWA, Service Workers</div></div>
+            <div class="card"><h3>Backend</h3><div class="skill-list">Node.js, NestJS, Express.js, REST APIs, GraphQL, event-driven jobs, API design, database-backed services</div></div>
+            <div class="card"><h3>Mobile</h3><div class="skill-list">React Native, Android, Kotlin, Java, Jetpack Compose, XML Views, WorkManager, ViewModel, Koin</div></div>
+            <div class="card"><h3>Cloud & DevOps</h3><div class="skill-list">AWS, AWS SQS, AWS Lambda, GCP, Firebase, Docker, Jenkins, GitHub Actions, CI/CD, Nginx</div></div>
+            <div class="card"><h3>Data & Storage</h3><div class="skill-list">PostgreSQL, Oracle, MongoDB, SQLite, Room, IndexedDB, offline-first synchronization, local persistence</div></div>
+            <div class="card"><h3>AI / Developer Productivity</h3><div class="skill-list">AI-assisted workflows, agent rules, prompt engineering, Cursor, Claude Code, ChatGPT, GitHub Copilot, CLI tooling</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="wrap">
+          <h2>Experience snapshot</h2>
+          <div class="timeline" style="margin-top:22px">
+            <article class="card role">
+              <div class="role-top"><h3>Rikoouu Technologies · Lead Software Engineer</h3><span class="date">Remote · Nov 2023 – Present</span></div>
+              <ul>
+                <li>Lead delivery across social, AI lifestyle, DeFi, and gaming products while contributing hands-on across mobile, backend, architecture, planning, and reviews.</li>
+                <li>Led teams of 4–8 engineers across OP3N, Gaimplan, YieldClub, and BoredButton.</li>
+                <li>Worked on 25k+ contact sync fixes, calendar sync, WebView memory optimization, wallet onramp/offramp refactors, CI/CD, AWS SQS/Lambda jobs, and Firebase integrations.</li>
+              </ul>
+            </article>
+            <article class="card role">
+              <div class="role-top"><h3>ARInspect · Android Developer → Senior Software Engineer → Lead Software Engineer</h3><span class="date">Ahmedabad · Dec 2019 – Oct 2023</span></div>
+              <ul>
+                <li>Promoted from Android Developer to Lead Software Engineer by expanding ownership into full-stack engineering, architecture, leadership, and cross-platform execution.</li>
+                <li>Led a 10-engineer mixed team across Angular/TypeScript, Android Kotlin/Java, Node.js/Express, admin dashboards, backend APIs, and offline-first inspection workflows.</li>
+                <li>Delivered a large web/backend module estimated at 9 months within 6 months and contributed to outcomes backed by a client testimonial reporting up to 300% efficiency improvement.</li>
+              </ul>
+            </article>
+            <article class="card role">
+              <div class="role-top"><h3>Earlier Android Engineering Roles</h3><span class="date">Aug 2016 – Dec 2019</span></div>
+              <ul>
+                <li>Built Android products across test preparation, volunteering, life-goal management, audio processing, skilled-worker discovery, and parental achievement tracking.</li>
+                <li>Worked with Java, Kotlin, WorkManager, offline support, Superpowered SDK, API integrations, unit tests, and Espresso-based UI tests.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="wrap">
+          <div class="card">
+            <div class="eyebrow">Available for serious engineering conversations</div>
+            <h2>Need a hands-on lead who can ship and structure the system?</h2>
+            <p class="sub" style="margin: 10px auto 0">I’m best suited for Lead Full Stack Engineer, Senior Full Stack Engineer, and hands-on Technical Lead roles across product, SaaS, startup, and remote-first teams.</p>
+            <div class="actions" style="justify-content:center">
+              <a class="btn primary" href="mailto:jeelvankhede@gmail.com">Email me</a>
+              <a class="btn" href="https://www.linkedin.com/in/jeel-vankhede-b42887165" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a class="btn" href="https://github.com/JeelVankhede" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">© 2026 Jeel Vankhede. Built for GitHub Pages.</div>
+    </footer>
+  </body>
+</html>
