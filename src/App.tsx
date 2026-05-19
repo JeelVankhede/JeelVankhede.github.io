@@ -1,5 +1,4 @@
 import React, { type ReactNode } from 'react';
-import { ArrowUpRight, Github, Linkedin, Mail, MessageSquareText, Sparkles } from 'lucide-react';
 import { experience, metrics, profile, projects, skills } from './data/portfolio';
 
 const navItems = ['Work', 'Skills', 'Experience', 'Contact'];
@@ -10,7 +9,7 @@ function ExternalLink({ href, children, variant = 'secondary' }: { href: string;
   return (
     <a className={`btn ${variant === 'primary' ? 'btnPrimary' : ''}`} href={href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noreferrer' : undefined}>
       {children}
-      <ArrowUpRight size={16} />
+      <span aria-hidden="true">-&gt;</span>
     </a>
   );
 }
@@ -32,23 +31,23 @@ export function App() {
       <section id="top" className="hero sectionPad">
         <div className="container heroGrid">
           <div>
-            <div className="kicker"><Sparkles size={16} /> {profile.role}</div>
+            <div className="kicker"><span aria-hidden="true">*</span> {profile.role}</div>
             <h1>Hands-on full-stack lead for serious product engineering.</h1>
             <p className="heroText">
               I build and lead full-stack products across frontend, backend, mobile, architecture, and AI-assisted engineering workflows. Strongest around React, Next.js, TypeScript, Node.js, NestJS, and Android/Kotlin depth.
             </p>
             <div className="actionRow">
-              <ExternalLink href={`mailto:${profile.email}`} variant="primary"><Mail size={17} /> Contact</ExternalLink>
-              <ExternalLink href={profile.links.github}><Github size={17} /> GitHub</ExternalLink>
-              <ExternalLink href={profile.links.stackOverflow}><MessageSquareText size={17} /> Stack Overflow</ExternalLink>
-              <ExternalLink href={profile.links.linkedin}><Linkedin size={17} /> LinkedIn</ExternalLink>
+              <ExternalLink href={`mailto:${profile.email}`} variant="primary">Contact</ExternalLink>
+              <ExternalLink href={profile.links.github}>GitHub</ExternalLink>
+              <ExternalLink href={profile.links.stackOverflow}>Stack Overflow</ExternalLink>
+              <ExternalLink href={profile.links.linkedin}>LinkedIn</ExternalLink>
             </div>
           </div>
           <aside className="heroCard">
             <p className="cardLabel">Current positioning</p>
             <h2>Lead Full Stack Engineer</h2>
-            <p>Frontend · Backend · Mobile · Architecture · Technical Leadership · AI-assisted developer productivity</p>
-            <div className="availability">Ahmedabad, India · Remote-first compatible</div>
+            <p>Frontend - Backend - Mobile - Architecture - Technical Leadership - AI-assisted developer productivity</p>
+            <div className="availability">Ahmedabad, India - Remote-first compatible</div>
           </aside>
         </div>
       </section>
@@ -100,7 +99,7 @@ export function App() {
             {skills.map((skill) => (
               <article className="skillCard" key={skill.title}>
                 <h3>{skill.title}</h3>
-                <p>{skill.items.join(' · ')}</p>
+                <p>{skill.items.join(' - ')}</p>
               </article>
             ))}
           </div>
@@ -135,11 +134,11 @@ export function App() {
         <div className="container contactCard">
           <p className="sectionKicker">Contact</p>
           <h2>Need a technical lead who can still ship?</h2>
-          <p>I’m best suited for Lead Full Stack Engineer, Senior Full Stack Engineer, and hands-on Technical Lead roles across product, SaaS, startup, and remote-first teams.</p>
+          <p>I am best suited for Lead Full Stack Engineer, Senior Full Stack Engineer, and hands-on Technical Lead roles across product, SaaS, startup, and remote-first teams.</p>
           <div className="actionRow center">
-            <ExternalLink href={`mailto:${profile.email}`} variant="primary"><Mail size={17} /> Email me</ExternalLink>
-            <ExternalLink href={profile.links.linkedin}><Linkedin size={17} /> LinkedIn</ExternalLink>
-            <ExternalLink href={profile.links.github}><Github size={17} /> GitHub</ExternalLink>
+            <ExternalLink href={`mailto:${profile.email}`} variant="primary">Email me</ExternalLink>
+            <ExternalLink href={profile.links.linkedin}>LinkedIn</ExternalLink>
+            <ExternalLink href={profile.links.github}>GitHub</ExternalLink>
           </div>
         </div>
       </section>
