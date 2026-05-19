@@ -5,7 +5,7 @@ export const profile = {
   location: 'Ahmedabad, Gujarat, India',
   email: 'jeelvankhede@gmail.com',
   phone: '+91 7874442754',
-  resumeUrl: '/resume.html',
+  resumeUrl: '/resume.pdf',
   links: {
     github: 'https://github.com/JeelVankhede',
     linkedin: 'https://www.linkedin.com/in/jeel-vankhede-b42887165',
