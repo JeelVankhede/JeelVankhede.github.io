@@ -1,15 +1,19 @@
 export const profile = {
   name: 'Jeel Vankhede',
+  initials: 'JV',
   role: 'Lead Full Stack Engineer',
   location: 'Ahmedabad, Gujarat, India',
   email: 'jeelvankhede@gmail.com',
   phone: '+91 7874442754',
+  resumeUrl: 'https://flowcv.me/jeelvankhede',
   links: {
     github: 'https://github.com/JeelVankhede',
     linkedin: 'https://www.linkedin.com/in/jeel-vankhede-b42887165',
     stackOverflow: 'https://stackoverflow.com/users/10271334/jeel-vankhede',
   },
 };
+
+export const navItems = ['Work', 'Credibility', 'Skills', 'Experience', 'Contact'];
 
 export const metrics = [
   { value: '9+', label: 'Years engineering experience' },
@@ -20,38 +24,72 @@ export const metrics = [
   { value: '2', label: 'Published npm packages' },
 ];
 
+export const credibility = [
+  {
+    title: 'Stack Overflow footprint',
+    value: '12k+ reputation, 1.1M+ people reached, 288 answers',
+    description: 'Public proof across Android, Kotlin, architecture, Java, LiveData, and ViewModel topics.',
+    href: profile.links.stackOverflow,
+  },
+  {
+    title: 'Published AI workflow packages',
+    value: 'frontend-ai-starter-recipes and backend-ai-starter-recipes',
+    description: 'npm-published CLI tooling for structured AI-assisted frontend/backend development workflows.',
+    href: 'https://www.npmjs.com/~jeelvankhede',
+  },
+  {
+    title: 'GitHub engineering portfolio',
+    value: 'AI tooling, Android architecture, Kotlin/Java utilities, TypeScript CLI work',
+    description: 'Public project footprint that supports the resume instead of simply repeating it.',
+    href: profile.links.github,
+  },
+];
+
 export const projects = [
   {
     name: 'AI Starter Recipes — Frontend & Backend',
     type: 'Published npm packages · TypeScript · CLI tooling',
-    summary:
-      'Developer tooling for generating AI agent rules, workflows, project standards, context, tracking, and IDE adapters for frontend/backend teams.',
-    impact: ['Published npm CLI packages', 'Supports Cursor, Claude Code, Copilot, Antigravity, and Windsurf', 'Generates structured .ai workflows and agent guidance'],
+    problem: 'Most AI-assisted coding setups start with vague prompts and inconsistent project-level rules.',
+    role: 'Creator and maintainer of published frontend/backend npm CLI packages.',
+    scope: 'Generates AI agent rules, workflows, project standards, context, tracking, and IDE adapters for frontend/backend teams.',
+    impact: 'Turns AI usage into a structured engineering workflow instead of ad-hoc assistant prompting.',
     tags: ['TypeScript', 'CLI', 'AI workflows', 'Developer productivity'],
+    links: [
+      { label: 'Frontend repo', href: 'https://github.com/JeelVankhede/frontend-ai-starter-recipes' },
+      { label: 'Backend repo', href: 'https://github.com/JeelVankhede/backend-ai-starter-recipes' },
+      { label: 'Frontend npm', href: 'https://www.npmjs.com/package/frontend-ai-starter-recipes' },
+      { label: 'Backend npm', href: 'https://www.npmjs.com/package/backend-ai-starter-recipes' },
+    ],
   },
   {
     name: 'ARInspect / Compliance Management Platform',
     type: 'Angular · Android · Node.js/Express · Offline-first',
-    summary:
-      'Offline-first inspection and compliance platform used by US government inspectors and enterprise teams to replace slow paper-based workflows.',
-    impact: ['Led 10-engineer mixed team', '9-month module delivered in 6 months', 'Client-reported 300% efficiency improvement'],
+    problem: 'Paper-based inspection workflows were slow, fragile, and unreliable for inspectors working in remote areas.',
+    role: 'Led a 10-engineer mixed team across web, mobile, backend, admin tooling, and delivery execution.',
+    scope: 'Offline sync, compliance tooling, backend APIs, web modules, canvas annotations, PDF generation, local storage, and route optimization.',
+    impact: 'Delivered a large spin-off module estimated at 9 months within 6 months; client-reported efficiency improvement reached up to 300%.',
     tags: ['Offline-first', 'Compliance', 'Angular', 'Android', 'Node.js'],
+    links: [],
   },
   {
     name: 'YieldClub / DeFi P2P Lending App',
     type: 'React Native · NestJS · AWS · GitHub Actions',
-    summary:
-      'Crypto-based peer-to-peer lending application with wallet flows, mobile-first journeys, CI/CD, and nightly interest-calculation jobs.',
-    impact: ['Led 8-engineer team', 'Scaled from 0 to 5k active users', 'AWS SQS/Lambda + Expo CI/CD'],
+    problem: 'Crypto lending workflows needed reliable mobile-first user journeys, wallet flows, and backend jobs.',
+    role: 'Led an 8-engineer team as project manager and IC across mobile and backend modules.',
+    scope: 'React Native app flows, NestJS backend modules, wallet onramp/offramp refactors, Expo CI/CD, AWS SQS/Lambda jobs.',
+    impact: 'Helped scale the product from 0 to 5k active users while improving maintainability around wallet flows and builds.',
     tags: ['React Native', 'NestJS', 'AWS', 'DeFi'],
+    links: [],
   },
   {
     name: 'Gaimplan',
     type: 'AI lifestyle management · React Native · NestJS · GCP',
-    summary:
-      'AI-powered lifestyle and calendar management application focused on synchronization, event suggestions, and conflict resolution.',
-    impact: ['Led 6-engineer team', 'Architected NestJS backend APIs', 'Improved calendar sync via pub/sub and cron services'],
+    problem: 'Calendar-heavy lifestyle apps need reliable sync, suggestions, conflict handling, and fast event loading.',
+    role: 'Led a 6-engineer team while contributing as backend IC and project manager.',
+    scope: 'NestJS APIs, GCP-heavy infrastructure, pub/sub and cron-based sync services, architecture and code reviews.',
+    impact: 'Improved calendar event loading, data reliability, sync behavior, delivery planning, and implementation flow.',
     tags: ['GCP', 'NestJS', 'Calendar sync', 'AI product'],
+    links: [],
   },
 ];
 
