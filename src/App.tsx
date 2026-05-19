@@ -1,11 +1,14 @@
+import React, { type ReactNode } from 'react';
 import { ArrowUpRight, Github, Linkedin, Mail, MessageSquareText, Sparkles } from 'lucide-react';
 import { experience, metrics, profile, projects, skills } from './data/portfolio';
 
 const navItems = ['Work', 'Skills', 'Experience', 'Contact'];
 
-function ExternalLink({ href, children, variant = 'secondary' }: { href: string; children: React.ReactNode; variant?: 'primary' | 'secondary' }) {
+function ExternalLink({ href, children, variant = 'secondary' }: { href: string; children: ReactNode; variant?: 'primary' | 'secondary' }) {
+  const isExternal = href.startsWith('http');
+
   return (
-    <a className={`btn ${variant === 'primary' ? 'btnPrimary' : ''}`} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer">
+    <a className={`btn ${variant === 'primary' ? 'btnPrimary' : ''}`} href={href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noreferrer' : undefined}>
       {children}
       <ArrowUpRight size={16} />
     </a>
@@ -17,8 +20,8 @@ export function App() {
     <main>
       <header className="siteHeader">
         <div className="container navBar">
-          <a href="#top" className="brand">JV</a>
-          <nav>
+          <a href="#top" className="brand" aria-label="Jeel Vankhede home">JV</a>
+          <nav aria-label="Primary navigation">
             {navItems.map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`}>{item}</a>
             ))}
@@ -50,7 +53,7 @@ export function App() {
         </div>
       </section>
 
-      <section className="metricsStrip">
+      <section className="metricsStrip" aria-label="Proof metrics">
         <div className="container metricsGrid">
           {metrics.map((metric) => (
             <div className="metric" key={metric.label}>

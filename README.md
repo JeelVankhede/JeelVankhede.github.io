@@ -6,10 +6,23 @@ GitHub Pages portfolio for Jeel Vankhede — Lead Full Stack Engineer.
 
 https://jeelvankhede.github.io
 
+## Stack
+
+React + Vite + TypeScript, deployed through GitHub Pages.
+
 ## Positioning
 
 Lead Full Stack Engineer focused on frontend, backend, mobile, architecture, technical leadership, and AI-assisted development workflows.
 
-## Notes
+## Local development
 
-This is a simple static portfolio optimized for GitHub Pages. It intentionally avoids heavy build tooling so the site can be served directly from the repository root.
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
