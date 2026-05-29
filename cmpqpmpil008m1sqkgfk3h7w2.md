@@ -1,0 +1,155 @@
+---
+title: "Most Engineers Use AI. Few Engineer With It."
+seoTitle: "Most Engineers Use AI. Few Engineer With It."
+seoDescription: "Engineers use AI for code, debugging, and boilerplate. But engineering with AI requires better specs, stronger reviews, deliberate verification."
+datePublished: 2026-05-27T15:00:00.000Z
+cuid: cmpqpmpil008m1sqkgfk3h7w2
+slug: most-engineers-use-ai-few-engineer-with-it
+cover: https://cdn.hashnode.com/uploads/covers/6a190ded78258754835f0cf3/6b580c22-bcfb-4547-9e90-d3da691775e1.png
+tags: ai, productivity, software-engineering, programing, developer-tools
+
+---
+
+Most software engineers I know use AI in some form now.
+
+Maybe it is for debugging, boilerplate, tests, docs, SQL queries, shell commands, or quick code reviews. Some use it daily. Some use it quietly. *Even the skeptical ones have probably pasted a confusing stack trace into a chat window once.*
+
+So I do not think the interesting question is:
+
+***“Do engineers use AI?”***
+
+The better question is:
+
+***“Has AI changed how they engineer?”***
+
+Because those are not the same thing.
+
+Using AI is easy.
+
+Engineering with AI is much harder.
+
+## The hard part was not code generation
+
+I noticed this while using AI around real repository tasks where a wrong change was not just “bad output”; it could break structure, tests, naming, or future maintainability.
+
+The code generation part was easy. A broad prompt could produce a lot of code quickly. Sometimes the output even looked clean at first glance.
+
+But the useful results came only when I had already done the boring engineering work: define the requirement, limit the scope, explain constraints, and decide how I would verify the change.
+
+The hard part was not asking AI to write code.
+
+The hard part was giving enough context without dumping everything into the prompt. It was making the task small enough. It was asking for tradeoffs before implementation. It was reviewing the output without getting impressed by clean formatting.
+
+Most importantly, it was checking whether the solution actually belonged in the system.
+
+That changed how I looked at AI-assisted development.
+
+*Prompting was not the real skill.*
+
+**Shaping the work was.**
+
+## AI makes output faster, not verification stronger
+
+There is nothing wrong with using AI for small tasks.
+
+I use it for debugging direction, naming, boilerplate, test ideas, documentation drafts, and exploring unfamiliar code. Those are useful tasks. They reduce friction.
+
+But the risk starts when faster output gets mistaken for better engineering.
+
+AI can generate code quickly. It can produce clean-looking functions, structured files, confident explanations, and reasonable test cases. But it does not automatically know whether the change fits your product, your architecture, your constraints, or your long-term maintenance cost.
+
+That part is still engineering work.
+
+The problem is not simply that AI may produce bad code. Engineers already deal with bad code from humans, libraries, tutorials, Stack Overflow answers, and their own tired brains.
+
+The bigger problem is that AI increases the speed of output without increasing the quality of verification.
+
+If code becomes faster to generate, unclear requirements become more expensive. Weak review becomes more dangerous. Missing tests become more painful. Poor architecture becomes easier to copy and harder to undo.
+
+**AI does not automatically improve engineering.**
+
+It amplifies the engineering loop that already exists.
+
+## Think twice, code once
+
+AI makes it easier to produce code before we have **fully understood the problem**.
+
+That is useful when the task is clear.
+
+It is dangerous when the task is vague.
+
+If the requirement is unclear, AI will still produce something. If the architecture is messy, AI will still copy the mess. If the engineer cannot review the output properly, speed becomes risk.
+
+> This is why I think **“AI will replace engineers”** is the least useful version of the conversation.
+
+A better question is:
+
+*“What parts of engineering become more important when code becomes cheaper to generate?”*
+
+My answer is: thinking clearly before implementation.
+
+**AI makes the old advice more important, not less:**
+
+*Think twice, code once.*
+
+Before asking AI to build, define the problem.
+
+Before accepting the answer, check the tradeoffs.
+
+Before merging the change, verify the behaviour.
+
+The value of engineering is shifting away from simply writing code and more toward shaping the right change.
+
+## What engineering with AI looks like
+
+For me, engineering with AI means treating it less like **a magic answer box** and more like a collaborator that needs structure.
+
+The work starts before implementation: write the requirement, narrow the scope, give useful context, ask for risks, and force a plan before code.
+
+After implementation, the responsibility comes back to the engineer: review the diff, run the checks, and decide whether the change belongs in the system.
+
+A useful AI-assisted loop can be simple:
+
+> Requirement → gaps → plan → small change → review → checks → notes
+
+This is not the glamorous version of AI development.
+
+But it is closer to real engineering.
+
+Because real engineering is not just producing code.
+
+It is producing reliable change.
+
+## The real shift
+
+The next shift in software engineering will not be about who can generate the most code.
+
+That advantage is already becoming cheaper.
+
+The harder advantage is knowing what should be built, how it should fit into the system, and how to verify that it works.
+
+That is where AI-assisted engineering becomes interesting.
+
+Not because AI replaces engineering judgment.
+
+Because it makes engineering judgment harder to skip.
+
+Most major engineering tools became valuable only after teams changed the workflow around them. Git changed collaboration. Cloud changed infrastructure. CI/CD changed shipping.
+
+AI is broader, messier, and moving faster than those shifts, so I do not want to pretend it will follow the exact same path.
+
+But the lesson still feels familiar:
+
+The tool matters.
+
+The workflow around the tool matters more.
+
+The engineers who benefit most will not necessarily be the ones who use AI the most. They will be the ones who design better loops around it: clearer specs, smaller changes, stronger reviews, better tests, and more deliberate decisions.
+
+So yes, most engineers use AI now.
+
+But only a few are starting to engineer with it.
+
+The best engineers in this phase may not be the fastest prompt writers.
+
+They may be the ones who can slow the problem down before speeding the implementation up.
