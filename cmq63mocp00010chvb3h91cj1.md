@@ -142,6 +142,6 @@ And it has a limit I have started to feel.
 
 A reviewer can only do so much when the pull request is fighting them. If the intent is buried, if twenty files arrive with no story to tie them together, if the risky change is hidden in the middle of a dozen safe ones, then no amount of patient reading will rescue the review. The reader cannot supply a clarity the author refused to provide.
 
-Which means half of this problem was never the reviewer's at all. It belongs to the person opening the pull request. That is the other half of the story, and it deserves its own piece.
+Which means half of this problem was never the reviewer's at all. It belongs to the person opening the pull request. That is the other [half of the story](https://jeelvankhede.hashnode.dev/open-the-pr-your-reviewer-has-not-met-yet), and it deserves its own piece.
 
 Review is not about the code in front of you. It is about the code that comes after.
