@@ -69,16 +69,16 @@ function CountUpNumber({ value }: { value: string }) {
 
 export function BelowFold() {
   return (
-    <div style={{ background: '#0d0d0d' }}>
+    <div style={{ background: '#050a0e' }}>
       {/* Work */}
-      <section id="work" style={{ padding: '80px 0' }}>
+      <section id="work" style={{ padding: '80px 0', borderTop: '1px solid rgba(0,255,200,0.07)' }}>
         <div className="below-fold-container">
           <p className="section-kicker">— Work</p>
           <h2 className="section-heading">Selected projects.</h2>
           <div>
             {projects.map((p, i) => (
               <div key={p.name} className="project-row">
-                <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '12px', color: 'rgba(255,255,255,0.3)', paddingTop: '2px' }}>
+                <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '12px', color: 'rgba(0,255,200,0.25)', paddingTop: '2px' }}>
                   {String(i + 1).padStart(2, '0')}
                 </div>
                 <div>
@@ -100,8 +100,8 @@ export function BelowFold() {
         </div>
       </section>
 
-      {/* Credibility */}
-      <section id="credibility" style={{ padding: '60px 0' }}>
+      {/* Credibility / Numbers */}
+      <section id="credibility" style={{ padding: '60px 0', borderTop: '1px solid rgba(0,255,200,0.07)' }}>
         <div className="below-fold-container">
           <p className="section-kicker">— Numbers</p>
           <h2 className="section-heading">By the numbers.</h2>
@@ -117,7 +117,7 @@ export function BelowFold() {
       </section>
 
       {/* Experience */}
-      <section id="experience" style={{ padding: '60px 0 80px' }}>
+      <section id="experience" style={{ padding: '60px 0 80px', borderTop: '1px solid rgba(0,255,200,0.07)' }}>
         <div className="below-fold-container">
           <p className="section-kicker">— Experience</p>
           <h2 className="section-heading">Engineering progression.</h2>
@@ -126,7 +126,7 @@ export function BelowFold() {
               <div style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
                 {e.company}
               </div>
-              <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '13px', color: 'rgba(255,255,255,0.45)', marginBottom: '4px' }}>
+              <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '13px', color: 'rgba(0,255,200,0.4)', marginBottom: '4px' }}>
                 {e.role}
               </div>
               <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '12px', color: 'rgba(255,255,255,0.3)', marginBottom: '12px' }}>
@@ -153,7 +153,7 @@ export function BelowFold() {
       </section>
 
       {/* Contact */}
-      <section id="contact" style={{ padding: '80px 0 120px' }}>
+      <section id="contact" style={{ padding: '80px 0 120px', borderTop: '1px solid rgba(0,255,200,0.07)' }}>
         <div className="below-fold-container" style={{ maxWidth: '600px' }}>
           <h2
             style={{
@@ -185,8 +185,8 @@ export function BelowFold() {
                 alignItems: 'center',
                 fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: '13px',
-                color: '#0a0a0a',
-                background: '#ffffff',
+                color: '#050a0e',
+                background: '#00ffc8',
                 padding: '12px 28px',
                 borderRadius: '8px',
                 fontWeight: 600,
@@ -203,7 +203,7 @@ export function BelowFold() {
                 fontSize: '13px',
                 color: '#ffffff',
                 background: 'transparent',
-                border: '1px solid rgba(255,255,255,0.3)',
+                border: '1px solid rgba(0,255,200,0.3)',
                 padding: '12px 28px',
                 borderRadius: '8px',
               }}
@@ -225,11 +225,11 @@ export function BelowFold() {
                 style={{
                   fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: '12px',
-                  color: 'rgba(255,255,255,0.4)',
+                  color: 'rgba(0,255,200,0.35)',
                   transition: 'color 0.15s',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
-                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}
+                onMouseEnter={e => (e.currentTarget.style.color = '#00ffc8')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(0,255,200,0.35)')}
               >
                 {link.label}
               </a>

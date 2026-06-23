@@ -1,37 +1,28 @@
 import { useState } from 'react';
-import { StackGraph } from './components/StackGraph';
-import { NodeDetail } from './components/NodeDetail';
-import { GraphLegend } from './components/GraphLegend';
-import { HeroOverlay } from './components/HeroOverlay';
+import { ArchDiagram } from './components/ArchDiagram';
+import { ArchDetail } from './components/ArchDetail';
+import { ArchHero } from './components/ArchHero';
 import { MetricsBar } from './components/MetricsBar';
 import { BelowFold } from './components/BelowFold';
-import type { StackNode } from './data/graphData';
+import type { ArchNode } from './data/archData';
 
 export function App() {
-  const [selectedNode, setSelectedNode] = useState<StackNode | null>(null);
+  const [selectedNode, setSelectedNode] = useState<ArchNode | null>(null);
 
   return (
-    <div style={{ background: '#0a0a0a', minHeight: '100vh', color: '#fff' }}>
+    <div style={{ background: '#050a0e', minHeight: '100vh', color: '#fff' }}>
       <MetricsBar />
-
-      {/* Hero: full-viewport graph section */}
-      <section
-        id="top"
-        style={{ position: 'relative', width: '100%', height: '100vh' }}
-      >
-        <StackGraph
+      <section id="top" style={{ position: 'relative', width: '100%', height: '100vh' }}>
+        <ArchDiagram
           onNodeSelect={setSelectedNode}
-          selectedNodeId={selectedNode?.id ?? null}
+          selectedId={selectedNode?.id ?? null}
         />
-        <HeroOverlay />
-        <GraphLegend />
-        <NodeDetail
-          selectedNode={selectedNode}
+        <ArchHero />
+        <ArchDetail
+          node={selectedNode}
           onClose={() => setSelectedNode(null)}
         />
       </section>
-
-      {/* Below-fold: intentionally minimal */}
       <BelowFold />
     </div>
   );
