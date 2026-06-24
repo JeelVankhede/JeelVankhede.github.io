@@ -1,29 +1,30 @@
-import { useState } from 'react';
-import { ArchDiagram } from './components/ArchDiagram';
-import { ArchDetail } from './components/ArchDetail';
-import { ArchHero } from './components/ArchHero';
-import { MetricsBar } from './components/MetricsBar';
-import { BelowFold } from './components/BelowFold';
-import type { ArchNode } from './data/archData';
+import { useState, useCallback } from 'react';
+import { PlanetScene } from './components/PlanetScene';
+import { PlanetHero } from './components/PlanetHero';
+import { InfoPanel } from './components/InfoPanel';
+import { IntroOverlay } from './components/IntroOverlay';
+import { SoundToggle } from './components/SoundToggle';
+import { audio } from './audio';
+import type { Selection } from './data/planetData';
 
 export function App() {
-  const [selectedNode, setSelectedNode] = useState<ArchNode | null>(null);
+  const [selected, setSelected] = useState<Selection | null>(null);
+  const [revealed, setRevealed] = useState(false);
+
+  const handleSelect = useCallback((s: Selection | null) => {
+    if (s) audio.sparkle();
+    setSelected(s);
+  }, []);
 
   return (
-    <div style={{ background: '#050a0e', minHeight: '100vh', color: '#fff' }}>
-      <MetricsBar />
-      <section id="top" style={{ position: 'relative', width: '100%', height: '100vh' }}>
-        <ArchDiagram
-          onNodeSelect={setSelectedNode}
-          selectedId={selectedNode?.id ?? null}
-        />
-        <ArchHero />
-        <ArchDetail
-          node={selectedNode}
-          onClose={() => setSelectedNode(null)}
-        />
-      </section>
-      <BelowFold />
+    <div className="planet-stage">
+      <PlanetScene selected={selected} onSelect={handleSelect} started={revealed} />
+      <div className={`hud${revealed ? ' hud-show' : ''}`}>
+        <PlanetHero />
+        <SoundToggle />
+      </div>
+      <InfoPanel selection={selected} onClose={() => setSelected(null)} />
+      {!revealed && <IntroOverlay onDone={() => setRevealed(true)} />}
     </div>
   );
 }
