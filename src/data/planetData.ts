@@ -89,7 +89,7 @@ export const islands: IslandDef[] = [
       title: 'Frontend',
       subtitle: 'Interfaces & experience',
       body: 'Production web apps with a strong type-safe core and offline-capable UX.',
-      tags: ['React.js', 'Next.js', 'TypeScript', 'Angular', 'Redux', 'NgRx', 'Canvas', 'PWA'],
+      tags: ['React.js', 'Next.js', 'TypeScript', 'Angular', 'Redux', 'NgRx', 'Canvas APIs', 'PWA'],
       accent: '#8fd0ff',
     },
     building: {
@@ -117,7 +117,7 @@ export const islands: IslandDef[] = [
       title: 'Backend',
       subtitle: 'Services & APIs',
       body: 'Service layers, APIs and event-driven jobs that scale with the product.',
-      tags: ['Node.js', 'NestJS', 'Express.js', 'REST', 'GraphQL', 'Event-driven jobs'],
+      tags: ['Node.js', 'NestJS', 'Express.js', 'REST APIs', 'GraphQL', 'Event-driven jobs', 'API design'],
       accent: '#b6a8ff',
     },
     chests: {
@@ -144,7 +144,7 @@ export const islands: IslandDef[] = [
       title: 'Mobile',
       subtitle: 'Native & cross-platform',
       body: 'From Android-native roots to cross-platform delivery, with offline-first reliability.',
-      tags: ['React Native', 'Android', 'Kotlin', 'Java', 'Jetpack Compose', 'WorkManager'],
+      tags: ['React Native', 'Android', 'Kotlin', 'Java', 'Jetpack Compose', 'WorkManager', 'Koin'],
       accent: '#ffc98f',
     },
     building: {
@@ -172,7 +172,7 @@ export const islands: IslandDef[] = [
       title: 'AI / Dev Productivity',
       subtitle: 'Structured AI workflows',
       body: 'Turning AI usage into a real engineering workflow — published npm CLI tooling for agent rules and project standards.',
-      tags: ['Claude Code', 'Prompt Engineering', 'Agent Rules', 'Cursor', 'npm CLI tooling'],
+      tags: ['Claude Code', 'AI-assisted workflows', 'Agent rules', 'Prompt engineering', 'Cursor', 'ChatGPT', 'CLI tooling'],
       accent: '#f4a8ff',
     },
     building: {
@@ -342,7 +342,7 @@ export const cloudSkill: SkillContent = {
   title: 'Cloud & DevOps',
   subtitle: 'Infra, CI/CD & delivery',
   body: 'Shipping on AWS and GCP with containers, queues and automated pipelines.',
-  tags: ['AWS', 'GCP', 'Docker', 'GitHub Actions', 'Jenkins', 'AWS SQS', 'AWS Lambda'],
+  tags: ['AWS', 'GCP', 'Firebase', 'Docker', 'GitHub Actions', 'Jenkins', 'AWS SQS', 'AWS Lambda'],
   accent: '#bfe0ff',
 };
 
