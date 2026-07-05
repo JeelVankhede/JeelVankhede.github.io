@@ -12,6 +12,7 @@
  *   node scripts/crosspost.mjs --cuid cmq63mocp00010chvb3h91cj1
  *   node scripts/crosspost.mjs --latest
  *   node scripts/crosspost.mjs --dry-run --slug your-article-slug
+ *   node scripts/crosspost.mjs --draft --slug your-article-slug   # save as draft
  */
 
 import { readFileSync, readdirSync } from 'fs';
@@ -37,6 +38,7 @@ const SLUG    = arg('--slug');
 const CUID    = arg('--cuid');
 const LATEST  = flag('--latest');
 const DRY_RUN = flag('--dry-run');
+const DRAFT   = flag('--draft');
 
 // ─── Article resolution ───────────────────────────────────────────────────────
 
@@ -62,6 +64,16 @@ function findArticle() {
   return null;
 }
 
+// ─── Description truncation ───────────────────────────────────────────────────
+
+function truncateDescription(raw) {
+  if (!raw) return undefined;
+  const str = String(raw);
+  if (str.length <= 160) return str;
+  const cut = str.slice(0, 157).replace(/\s+\S*$/, '');
+  return cut + '...';
+}
+
 // ─── Tag normalisation ────────────────────────────────────────────────────────
 
 function devToTags(raw) {
@@ -77,15 +89,17 @@ async function publishDevTo(article, canonical) {
   const key = process.env.DEVTO_API_KEY;
   if (!key) { console.error('\n❌  DEVTO_API_KEY missing from .env'); process.exit(1); }
 
-  const tags    = devToTags(article.data.tags);
+  const tags        = devToTags(article.data.tags);
+  const description = truncateDescription(article.data.seoDescription);
   const payload = {
     article: {
       title:         article.data.title,
       body_markdown: article.body,
-      published:     true,
+      published:     !DRAFT,
       canonical_url: canonical,
       tags,
-      ...(article.data.cover ? { main_image: article.data.cover } : {}),
+      ...(description                ? { description }                       : {}),
+      ...(article.data.cover         ? { main_image: article.data.cover }    : {}),
     },
   };
 
@@ -94,6 +108,8 @@ async function publishDevTo(article, canonical) {
   console.log(`   Tags     : ${tags.join(', ')}`);
   console.log(`   Cover    : ${article.data.cover || 'none'}`);
   console.log(`   Canonical: ${canonical}`);
+  console.log(`   Desc     : ${description ?? 'none'} (${(description ?? '').length} chars)`);
+  console.log(`   Draft    : ${DRAFT}`);
 
   if (DRY_RUN) { console.log('\n   [dry-run] skipping publish'); return; }
 
@@ -115,7 +131,7 @@ async function publishDevTo(article, canonical) {
     process.exit(1);
   }
 
-  console.log(`\n✅  Dev.to live: ${json.url}`);
+  console.log(`\n✅  Dev.to ${DRAFT ? 'draft saved' : 'live'}: ${json.url}`);
   return json.url;
 }
 
@@ -130,6 +146,7 @@ async function main() {
       '  node scripts/crosspost.mjs --cuid <cuid>',
       '  node scripts/crosspost.mjs --latest',
       '  node scripts/crosspost.mjs --dry-run --slug <slug>',
+      '  node scripts/crosspost.mjs --draft --slug <slug>',
       '',
     ].join('\n'));
     process.exit(1);
