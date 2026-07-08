@@ -1,6 +1,5 @@
 ---
-title: "A Verdict Is Not Evidence.
-Test Is Where I Learned the Difference."
+title: "A Verdict Is Not Evidence. Test Is Where I Learned the Difference."
 seoTitle: "A Verdict Is Not Evidence. Test Taught Me Why."
 seoDescription: "A code review passed with a named risk. Nobody had run it. Part 6 of The Contract: why a recommendation isn't proof until something executes."
 datePublished: 2026-07-08T18:22:47.887Z
