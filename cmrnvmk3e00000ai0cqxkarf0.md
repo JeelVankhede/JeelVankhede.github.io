@@ -1,5 +1,5 @@
 ---
-title: "The deploy was boring that was the whole point"
+title: "The Deploy Was Boring. That Was The Whole Point"
 seoTitle: "The Deploy Was Boring. That Was the Whole Point."
 seoDescription: "A quiet deploy felt like a red flag. It was actually the invoice five earlier phases had already paid."
 datePublished: 2026-07-16T19:02:55.820Z
