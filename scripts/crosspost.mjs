@@ -4,90 +4,49 @@
  * Publishes a Hashnode article to Dev.to via REST API.
  *
  * ─── Setup ───────────────────────────────────────────────────────────────────
- *   npm install --save-dev gray-matter dotenv
  *   cp scripts/.env.example .env    # add DEVTO_API_KEY
  *
  * ─── Usage ───────────────────────────────────────────────────────────────────
- *   node scripts/crosspost.mjs --slug your-article-slug
+ *   npm run post:devto -- your-article-slug
+ *   node scripts/crosspost.mjs your-article-slug
  *   node scripts/crosspost.mjs --cuid cmq63mocp00010chvb3h91cj1
  *   node scripts/crosspost.mjs --latest
- *   node scripts/crosspost.mjs --dry-run --slug your-article-slug
- *   node scripts/crosspost.mjs --draft --slug your-article-slug   # save as draft
+ *   node scripts/crosspost.mjs --dry-run your-article-slug
+ *   node scripts/crosspost.mjs --draft your-article-slug   # save as draft
  */
 
-import { readFileSync, readdirSync } from 'fs';
-import { resolve, dirname, join }    from 'path';
-import { fileURLToPath }             from 'url';
-import matter                        from 'gray-matter';
-import dotenv                        from 'dotenv';
+import dotenv from 'dotenv';
+import {
+  parseArgs, findArticle, canonicalUrl,
+  truncateDescription, parseTags,
+  printHeader, printFooter, die,
+} from './lib/article.mjs';
 
 dotenv.config();
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT      = resolve(__dirname, '..');
-const HASHNODE  = 'https://jeelvankhede.hashnode.dev';
 const DEVTO_API = 'https://dev.to/api/articles';
 
 // ─── CLI ─────────────────────────────────────────────────────────────────────
 
-const argv    = process.argv.slice(2);
-const flag    = n => argv.includes(n);
-const arg     = n => { const i = argv.indexOf(n); return i !== -1 ? argv[i + 1] : null; };
-
-const SLUG    = arg('--slug');
-const CUID    = arg('--cuid');
-const LATEST  = flag('--latest');
-const DRY_RUN = flag('--dry-run');
-const DRAFT   = flag('--draft');
-
-// ─── Article resolution ───────────────────────────────────────────────────────
-
-function loadArticles() {
-  return readdirSync(ROOT)
-    .filter(f => /^[a-z0-9]+\.md$/i.test(f) && f !== 'README.md')
-    .map(file => {
-      try {
-        const { data, content } = matter(readFileSync(join(ROOT, file), 'utf-8'));
-        return data.slug ? { file, data, body: content.trim() } : null;
-      } catch { return null; }
-    })
-    .filter(Boolean);
-}
-
-function findArticle() {
-  const articles = loadArticles();
-  if (!articles.length) return null;
-  if (LATEST) return articles.sort((a, b) =>
-    new Date(b.data.datePublished) - new Date(a.data.datePublished))[0];
-  if (SLUG)   return articles.find(a => a.data.slug === SLUG)    ?? null;
-  if (CUID)   return articles.find(a => a.file === `${CUID}.md`) ?? null;
-  return null;
-}
-
-// ─── Description truncation ───────────────────────────────────────────────────
-
-function truncateDescription(raw) {
-  if (!raw) return undefined;
-  const str = String(raw);
-  if (str.length <= 160) return str;
-  const cut = str.slice(0, 157).replace(/\s+\S*$/, '');
-  return cut + '...';
-}
+const cli     = parseArgs();
+const DRY_RUN = cli.dryRun;
+const DRAFT   = cli.flag('--draft');
 
 // ─── Tag normalisation ────────────────────────────────────────────────────────
 
+/** Dev.to tags are alphanumeric only, max 4. */
 function devToTags(raw) {
-  const list = typeof raw === 'string'
-    ? raw.split(',').map(t => t.trim())
-    : Array.isArray(raw) ? raw : [];
-  return list.map(t => t.toLowerCase().replace(/[\s-]+/g, '')).filter(Boolean).slice(0, 4);
+  return parseTags(raw)
+    .map(t => t.toLowerCase().replace(/[\s-]+/g, ''))
+    .filter(Boolean)
+    .slice(0, 4);
 }
 
 // ─── Dev.to (REST API) ────────────────────────────────────────────────────────
 
 async function publishDevTo(article, canonical) {
   const key = process.env.DEVTO_API_KEY;
-  if (!key) { console.error('\n❌  DEVTO_API_KEY missing from .env'); process.exit(1); }
+  if (!key) die('DEVTO_API_KEY missing from .env');
 
   const tags        = devToTags(article.data.tags);
   const description = truncateDescription(article.data.seoDescription);
@@ -98,8 +57,8 @@ async function publishDevTo(article, canonical) {
       published:     !DRAFT,
       canonical_url: canonical,
       tags,
-      ...(description                ? { description }                       : {}),
-      ...(article.data.cover         ? { main_image: article.data.cover }    : {}),
+      ...(description        ? { description }                    : {}),
+      ...(article.data.cover ? { main_image: article.data.cover } : {}),
     },
   };
 
@@ -127,8 +86,7 @@ async function publishDevTo(article, canonical) {
       console.log('\n⚠   Already published on Dev.to — skipping.');
       return null;
     }
-    console.error(`\n❌  Dev.to error (${res.status}): ${errorMsg}`);
-    process.exit(1);
+    die(`Dev.to error (${res.status}): ${errorMsg}`);
   }
 
   console.log(`\n✅  Dev.to ${DRAFT ? 'draft saved' : 'live'}: ${json.url}`);
@@ -138,41 +96,29 @@ async function publishDevTo(article, canonical) {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
-  if (!SLUG && !CUID && !LATEST) {
+  if (!cli.slug && !cli.cuid && !cli.latest) {
     console.log([
       '',
       'Usage:',
-      '  node scripts/crosspost.mjs --slug <slug>',
+      '  node scripts/crosspost.mjs <slug>',
       '  node scripts/crosspost.mjs --cuid <cuid>',
       '  node scripts/crosspost.mjs --latest',
-      '  node scripts/crosspost.mjs --dry-run --slug <slug>',
-      '  node scripts/crosspost.mjs --draft --slug <slug>',
+      '',
+      'Options:',
+      '  --dry-run    print the payload without posting',
+      '  --draft      save as a Dev.to draft instead of publishing',
       '',
     ].join('\n'));
     process.exit(1);
   }
 
-  const article = findArticle();
-  if (!article) {
-    console.error('\n❌  Article not found. Resync your GitHub repo and try again.\n');
-    process.exit(1);
-  }
+  const article = findArticle(cli);
+  if (!article) die('Article not found. Resync your GitHub repo and try again.');
 
-  const canonical = `${HASHNODE}/${article.data.slug}`;
-
-  console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  console.log(`📄  ${article.data.title}`);
-  console.log(`    ${canonical}`);
-  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-
+  const canonical = canonicalUrl(article);
+  printHeader(article, canonical);
   await publishDevTo(article, canonical);
-
-  console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  console.log('✅  Done.');
-  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
+  printFooter();
 }
 
-main().catch(err => {
-  console.error('\n❌  Fatal:', err.message);
-  process.exit(1);
-});
+main().catch(err => die(`Fatal: ${err.message}`));

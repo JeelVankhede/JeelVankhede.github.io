@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "post:devto": "node scripts/crosspost.mjs",
+    "post:coderlegion": "node scripts/coderlegion.mjs",
+    "post:all": "node scripts/post-all.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
