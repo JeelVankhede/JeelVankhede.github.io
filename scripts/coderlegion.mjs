@@ -33,7 +33,7 @@ import {
 dotenv.config();
 
 const API      = 'https://coderlegion.com/api/v1';
-const MAX_TAGS = 5;
+const MAX_TAGS = 4; // the API rejects more with a 422 ("Maximum of 4 tags allowed")
 
 // ─── CLI ─────────────────────────────────────────────────────────────────────
 
